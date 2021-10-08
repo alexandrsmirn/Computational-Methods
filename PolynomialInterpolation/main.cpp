@@ -49,7 +49,7 @@ public:
     };
 
     void printTable() {
-        std::cout << "Point\t|Value\n";
+        std::cout << "Point\t\t\t| Value\n";
         for (auto const& pair : interpolationTable) {
             std::cout << pair.first << "\t| " << pair.second << '\n';
         }
@@ -178,7 +178,7 @@ int main() {
         std::cout << "Approximate Lagrange value:             " << lagrangePolyniminalValue << '\n';
         std::cout << "Lagrange error:                         " << abs(lagrangePolyniminalValue - exactValue) << '\n';
         std::cout << "--------\n";
-        std::cout << "Approximate Newton value: " << newtonPolyniminalValue << '\n';
+        std::cout << "Approximate Newton value:               " << newtonPolyniminalValue << '\n';
         std::cout << "Newton error:                           " << abs(newtonPolyniminalValue - exactValue) << '\n';
         std::cout << "---------------------------------------------------------------\n";
     }
