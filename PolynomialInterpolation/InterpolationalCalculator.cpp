@@ -1,11 +1,11 @@
-#include "PolynomCalculator.h"
+#include "InterpolationalCalculator.h"
 
-PolynomCalculator::PolynomCalculator(double begin, double end, int numPoints, std::function<double(double)> func)
+InterpolationalCalculator::InterpolationalCalculator(double begin, double end, int numPoints, std::function<double(double)> func)
         : begin(begin), end(end), func(func) {
    this->generateInterpolationTable(numPoints);
 }
 
-PolynomCalculator::Table PolynomCalculator::createSortedInterpolationTable(double argument, int degree) {
+InterpolationalCalculator::Table InterpolationalCalculator::createSortedInterpolationTable(double argument, int degree) {
     Table sortedInterpolationTable = this->interpolationTable;
 
     std::sort(sortedInterpolationTable.begin(), sortedInterpolationTable.end(),
@@ -17,7 +17,7 @@ PolynomCalculator::Table PolynomCalculator::createSortedInterpolationTable(doubl
     return sortedInterpolationTable;
 }
 
-void PolynomCalculator::generateInterpolationTable(int newNumber) {
+void InterpolationalCalculator::generateInterpolationTable(int newNumber) {
     numPoints = newNumber;
     double step = (end - begin) / numPoints;
     interpolationTable.clear();
@@ -30,7 +30,7 @@ void PolynomCalculator::generateInterpolationTable(int newNumber) {
 }
 
 
-void PolynomCalculator::printTable() {
+void InterpolationalCalculator::printTable() {
     std::cout << "Point\t\t\t| Value\n";
     for (auto const& pair : interpolationTable) {
         std::cout << pair.first << "\t| " << pair.second << '\n';

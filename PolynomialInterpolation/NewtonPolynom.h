@@ -1,8 +1,9 @@
 #pragma once
 
-#include "PolynomCalculator.h"
+#include "InterpolationalCalculator.h"
+#include "IPolynomCalculator.h"
 
-class NewtonPolynom : public PolynomCalculator {
+class NewtonPolynom : public InterpolationalCalculator, public IPolynomCalculator {
 private:
     std::vector<std::vector<double>> dividedDiffTable;
 
@@ -10,7 +11,7 @@ private:
 
 public:
     NewtonPolynom(double begin, double end, int numPoints, std::function<double(double)> func)
-        : PolynomCalculator(begin, end, numPoints, func) {}
+        : InterpolationalCalculator(begin, end, numPoints, func) {}
 
     double getInterpolatedValue(double argument, int degree) override;
 };

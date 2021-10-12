@@ -1,8 +1,8 @@
 #include "LagrangePolynom.h"
 
-double LagrangePolynom::calculateFundamentalPoly(double argument, int pointNumber, Table const& sortedInterpolationTable) {
+double LagrangePolynom::calculateFundamentalPoly(double argument, int pointNumber, Table const& sortedInterpolationTable) const {
     double result = 1;
-    double point = sortedInterpolationTable[pointNumber].first;
+    double const point = sortedInterpolationTable[pointNumber].first;
 
     for (auto const& pair : sortedInterpolationTable) {
         if (pair.first != point) {
@@ -13,7 +13,7 @@ double LagrangePolynom::calculateFundamentalPoly(double argument, int pointNumbe
 }
 
 double LagrangePolynom::getInterpolatedValue(double argument, int degree) {
-    Table sortedInterpolationTable = createSortedInterpolationTable(argument, degree);
+    Table const sortedInterpolationTable = createSortedInterpolationTable(argument, degree);
 
     int pointNumber = 0;
     double result = 0;

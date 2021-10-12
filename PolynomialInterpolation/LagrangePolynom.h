@@ -1,14 +1,15 @@
 #pragma once
 
-#include "PolynomCalculator.h"
+#include "InterpolationalCalculator.h"
+#include "IPolynomCalculator.h"
 
-class LagrangePolynom : public PolynomCalculator {
+class LagrangePolynom : public InterpolationalCalculator, public IPolynomCalculator {
 private:  
-    double calculateFundamentalPoly(double argument, int pointNumber, Table const& sortedInterpolationTable);
+    double calculateFundamentalPoly(double argument, int pointNumber, Table const& sortedInterpolationTable) const;
 
 public:
     LagrangePolynom(double begin, double end, int numPoints, std::function<double(double)> func)
-        : PolynomCalculator(begin, end, numPoints, func) {}
+        : InterpolationalCalculator(begin, end, numPoints, func) {}
 
     double getInterpolatedValue(double argument, int degree) override;
 };
