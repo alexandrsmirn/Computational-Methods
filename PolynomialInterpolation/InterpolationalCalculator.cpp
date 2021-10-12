@@ -5,7 +5,7 @@ InterpolationalCalculator::InterpolationalCalculator(double begin, double end, i
    this->generateInterpolationTable(numPoints);
 }
 
-InterpolationalCalculator::Table InterpolationalCalculator::createSortedInterpolationTable(double argument, int degree) {
+InterpolationalCalculator::Table InterpolationalCalculator::createSortedInterpolationTable(double argument, int degree) const {
     Table sortedInterpolationTable = this->interpolationTable;
 
     std::sort(sortedInterpolationTable.begin(), sortedInterpolationTable.end(),
@@ -30,9 +30,9 @@ void InterpolationalCalculator::generateInterpolationTable(int newNumber) {
 }
 
 
-void InterpolationalCalculator::printTable() {
-    std::cout << "Point\t\t\t| Value\n";
+void InterpolationalCalculator::printTable(std::ostream & output) const {
+    output << "Point\t\t\t| Value\n";
     for (auto const& pair : interpolationTable) {
-        std::cout << pair.first << "\t| " << pair.second << '\n';
+        output << pair.first << "\t| " << pair.second << '\n';
     }
 }

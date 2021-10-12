@@ -5,13 +5,12 @@
 
 class NewtonPolynom : public InterpolationalCalculator, public IPolynomCalculator {
 private:
-    std::vector<std::vector<double>> dividedDiffTable;
+    using DiffTable = std::vector<std::vector<double>>;
 
-    void createDividedDiffTable(Table const& sortedInterpolationTable);
-
+    DiffTable createDividedDiffTable(Table const& sortedInterpolationTable) const;
 public:
     NewtonPolynom(double begin, double end, int numPoints, std::function<double(double)> func)
         : InterpolationalCalculator(begin, end, numPoints, func) {}
 
-    double getInterpolatedValue(double argument, int degree) override;
+    double getInterpolatedValue(double argument, int degree) const override;
 };

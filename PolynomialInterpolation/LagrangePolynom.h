@@ -11,5 +11,5 @@ public:
     LagrangePolynom(double begin, double end, int numPoints, std::function<double(double)> func)
         : InterpolationalCalculator(begin, end, numPoints, func) {}
 
-    double getInterpolatedValue(double argument, int degree) override;
+    double getInterpolatedValue(double argument, int degree) const override;
 };

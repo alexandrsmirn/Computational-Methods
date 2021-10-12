@@ -12,7 +12,7 @@ double LagrangePolynom::calculateFundamentalPoly(double argument, int pointNumbe
     return result;
 }
 
-double LagrangePolynom::getInterpolatedValue(double argument, int degree) {
+double LagrangePolynom::getInterpolatedValue(double argument, int degree) const {
     Table const sortedInterpolationTable = createSortedInterpolationTable(argument, degree);
 
     int pointNumber = 0;

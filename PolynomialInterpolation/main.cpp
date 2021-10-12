@@ -26,16 +26,13 @@ int main() {
     std::cin >> numPoints;
 
     auto lagrangeCalculator = LagrangePolynom(begin, end, numPoints, f);
-    auto   newtonCalculator = NewtonPolynom  (begin, end, numPoints, f);
+    auto   newtonCalculator =   NewtonPolynom(begin, end, numPoints, f);
 
     std::cout << "\nInterpolation table:\n";
-    lagrangeCalculator.printTable();
+    lagrangeCalculator.printTable(std::cout);
     std::cout << "\n---------------------------------------------------------------\n";
 
     while (true) {
-        std::cout << "Enter argument to calculate function -> ";
-        std::cin >> argument;
-
         std::cout << "Enter polynom degree -> ";
         std::cin >> degree;
 
@@ -44,6 +41,9 @@ int main() {
             std::cout << "---------------------------------------------------------------\n";
             continue;
         }
+
+        std::cout << "Enter argument to calculate function -> ";
+        std::cin >> argument;
 
         double exactValue = f(argument);
         double lagrangePolyniminalValue = lagrangeCalculator.getInterpolatedValue(argument, degree);

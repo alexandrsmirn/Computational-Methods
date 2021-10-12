@@ -15,9 +15,9 @@ protected:
     std::function<double(double)> func;
 
     void  generateInterpolationTable(int newNumber);
-    Table createSortedInterpolationTable(double argument, int degree);
+    Table createSortedInterpolationTable(double argument, int degree) const;
     
     InterpolationalCalculator(double begin, double end, int numPoints, std::function<double(double)> func);
 public:
-    void printTable();
+    void printTable(std::ostream & output) const;
 };

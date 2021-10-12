@@ -1,8 +1,8 @@
 #include "NewtonPolynom.h"
 
-void NewtonPolynom::createDividedDiffTable(Table const& sortedInterpolationTable) {
-    dividedDiffTable.clear();
-    int degree = sortedInterpolationTable.size();
+NewtonPolynom::DiffTable NewtonPolynom::createDividedDiffTable(Table const& sortedInterpolationTable) const {
+    DiffTable dividedDiffTable;
+    int const degree = sortedInterpolationTable.size();
 
     std::vector<double> zeroLevel;
     for (auto const& row : sortedInterpolationTable) {
@@ -14,16 +14,19 @@ void NewtonPolynom::createDividedDiffTable(Table const& sortedInterpolationTable
         std::vector<double> level; 
         for (int i = 0; i < degree - levelNum; ++i) {
             auto const& previousLevel = dividedDiffTable[levelNum - 1];
-            double dividedDiffValue = (previousLevel[i + 1] - previousLevel[i]) / (sortedInterpolationTable[i + levelNum].first - sortedInterpolationTable[i].first);
+            double dividedDiffValue = (previousLevel[i + 1] - previousLevel[i])
+                                    / (sortedInterpolationTable[i + levelNum].first - sortedInterpolationTable[i].first);
             level.push_back(dividedDiffValue);
         }
         dividedDiffTable.push_back(std::move(level));
     }
+
+    return dividedDiffTable;
 }
 
-double NewtonPolynom::getInterpolatedValue(double argument, int degree) {
-    Table sortedInterpolationTable = createSortedInterpolationTable(argument, degree);
-    createDividedDiffTable(sortedInterpolationTable);
+double NewtonPolynom::getInterpolatedValue(double argument, int degree) const {
+    Table const sortedInterpolationTable = createSortedInterpolationTable(argument, degree);
+    DiffTable const dividedDiffTable = createDividedDiffTable(sortedInterpolationTable);
 
     double result = 0;
     double parenthesesComposition = 1;
